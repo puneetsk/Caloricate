@@ -1,19 +1,63 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div id="app" class="container">
+   
+    <div class="page-header">
+      <h1>Welcome to Calorie Counter</h1>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Calories for the day</h2>
+      </div>
+
+      <div class="panel-body">
+        <table class="table table-stripped">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Calories</th>
+              <th>Fat</th>
+              <th>Protien</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="food in Foods">
+              <td>{{ food.Item }}</td>
+              <td>{{ food.Calories}}g</td>  
+              <td>{{ food.Fat }}g</td>
+              <td>{{ food.Protein }}g</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Firebase from 'firebase'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+let config = {
+    apiKey: "AIzaSyD9Ghr-J33f8sQ9xB7yLFN9vvQpdgVZ1s0",
+    authDomain: "caloricate.firebaseapp.com",
+    databaseURL: "https://caloricate.firebaseio.com",
+    projectId: "caloricate",
+    storageBucket: "caloricate.appspot.com",
+    messagingSenderId: "108277077998"
   }
-}
+
+let app = Firebase.initializeApp(config); /* To intialize the Firsebase Connection with the config*/
+let db = app.database(); /* Open the database connection */
+let dataref= db.ref('Foods'); /* Referencing the category*/
+
+
+  export default {
+    name: 'app', 
+    firebase:{
+      Foods : dataref /* Exporting the information */
+    } 
+  }     
+
 </script>
 
 <style>
@@ -25,4 +69,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+table td, th{text-align: center;}
 </style>
