@@ -13,8 +13,23 @@
       <div class="panel-body">
         <form id="form" class="form-inline">
           <div class="form-group">
-            <label for="fooditem">Food Item</label>
+            <label for="fooditem">Food Item </label>
             <input type="text" id="footitem" class="form-control" v-model="newFood.Item"></input>
+          </div>
+
+          <div class="form-group">
+            <label for="foodcalorie">Calories </label>
+            <input type="text" id="foodcalorie" class="form-control" v-model="newFood.Calorie"></input>
+          </div>
+
+          <div class="form-group">
+            <label for="foodfat">Fat </label>
+            <input type="text" id="foodfat" class="form-control" v-model="newFood.Fat"></input>
+          </div>
+
+          <div class="form-group">
+            <label for="foodprotein">Protein</label>
+            <input type="text" id="foodprotein" class="form-control" v-model="newFood.Protein"></input>
           </div>
         </form>
       </div>
