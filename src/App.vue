@@ -55,6 +55,17 @@ let dataref= db.ref('Foods'); /* Referencing the category*/
     name: 'app', 
     firebase:{
       Foods : dataref /* Exporting the information */
+    },
+
+    data(){
+        return{
+          newFood : {
+            Item : '',
+            Calorie:'',
+            Fat:'',
+            Protein:''
+          }
+        }
     } 
   }     
 
