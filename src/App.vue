@@ -7,6 +7,20 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
+        <h2>Add Food to find out calories</h2>
+      </div>
+
+      <div class="panel-body">
+        <form id="form" class="form-inline">
+          <div class="form-group">
+            <label for="fooditem">Food Item</label>
+            <input type="text" id="footitem" class="form-control" v-model="newFood.Item"></input>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
         <h2>Calories for the day</h2>
       </div>
 
