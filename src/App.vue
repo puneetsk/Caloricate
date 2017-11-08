@@ -41,25 +41,23 @@
         </div>
 
         <div class="card-body">
-          <form id="form" class="form-inline" v-on:submit.prevent="addFood">
-            <div class="col">
-          
-              <input type="text" id="footitem" class="form-control" v-model="newFood.Item"></input>
+          <form id="needs-validation" novalidate class="form-inline" v-on:submit.prevent="addFood">
+            <div class="col">          
+              <input type="text" id="footitem" class="form-control" v-model="newFood.Item" placeholder="Food Item" ></input>
             </div>
 
             <div class="col">
              
-              <input type="text" id="foodcalorie" class="form-control" v-model="newFood.Calories"></input>
+              <input type="text" id="foodcalorie" class="form-control"  v-model="newFood.Calories" placeholder="Calorie in g" ></input>
             </div>
 
             <div class="col">
              
-              <input type="text" id="foodfat" class="form-control" v-model="newFood.Fat"></input>
+              <input type="text" id="foodfat" class="form-control"  v-model="newFood.Fat"  placeholder="Fat in g" ></input>
             </div>
 
-            <div class="col">
-              
-              <input type="text" id="foodprotein" class="form-control" v-model="newFood.Protein"></input>
+            <div class="col">              
+              <input type="text" id="foodprotein" class="form-control"  v-model="newFood.Protein"  placeholder="Protein in g" ></input>
             </div>
 
             <input type="submit" class="btn btn-primary" value="Add Food Items">
