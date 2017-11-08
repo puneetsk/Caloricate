@@ -11,7 +11,7 @@
       </div>
 
       <div class="panel-body">
-        <form id="form" class="form-inline">
+        <form id="form" class="form-inline" v-on:submit.prevent="addFood">
           <div class="form-group">
             <label for="fooditem">Food Item </label>
             <input type="text" id="footitem" class="form-control" v-model="newFood.Item"></input>
@@ -19,7 +19,7 @@
 
           <div class="form-group">
             <label for="foodcalorie">Calories </label>
-            <input type="text" id="foodcalorie" class="form-control" v-model="newFood.Calorie"></input>
+            <input type="text" id="foodcalorie" class="form-control" v-model="newFood.Calories"></input>
           </div>
 
           <div class="form-group">
@@ -31,6 +31,8 @@
             <label for="foodprotein">Protein</label>
             <input type="text" id="foodprotein" class="form-control" v-model="newFood.Protein"></input>
           </div>
+
+          <input type="submit" class="btn btn-primary" value="Add Food Items">
         </form>
       </div>
     </div>
@@ -55,6 +57,7 @@
               <td>{{ food.Calories}}g</td>  
               <td>{{ food.Fat }}g</td>
               <td>{{ food.Protein }}g</td>
+              <td> <span class="glyphicon glyphicon-trash" v-on:click="removeItem(food)"></span></td>
             </tr>
           </tbody>
         </table>
@@ -83,18 +86,32 @@ let dataref= db.ref('Foods'); /* Referencing the category*/
   export default {
     name: 'app', 
     firebase:{
-      Foods : dataref /* Exporting the information */
+      Foods : dataref /* Exporting the information to the template Food in Foods*/
     },
 
     data(){
         return{
           newFood : {
             Item : '',
-            Calorie:'',
+            Calories:'',
             Fat:'',
             Protein:''
           }
         }
+    },
+
+    methods:{
+      addFood:function(){
+        dataref.push(this.newFood);
+        this.newFood.Item ="";
+        this.newFood.Calories = "";
+        this.newFood.Fat="";
+        this.newFood.Protein="";
+      },
+
+      removeItem:function(food){
+        dataref.child(food['.key']).remove();
+      }
     } 
   }     
 
@@ -111,4 +128,5 @@ let dataref= db.ref('Foods'); /* Referencing the category*/
 }
 
 table td, th{text-align: center;}
+.btn{margin: 20px;}
 </style>
