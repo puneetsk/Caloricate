@@ -1,13 +1,12 @@
 <template>
   <div id="app" class="container">
-   
     <div class="page-header">
       <h1>Welcome to Calorie Counter</h1>
     </div>
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h2>Add Food to find out calories</h2>
+        <h2>Add Food</h2>
       </div>
 
       <div class="panel-body">
@@ -38,7 +37,7 @@
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h2>Calories for the day</h2>
+        <h2>Calculated Calories</h2>
       </div>
 
       <div class="panel-body">
