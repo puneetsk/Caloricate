@@ -87,7 +87,7 @@
                 <td>{{ food.Calories}}g</td>  
                 <td>{{ food.Fat }}g</td>
                 <td>{{ food.Protein }}g</td>
-                <td> <span class="glyphicon glyphicon-trash" v-on:click="removeItem(food)"></span></td>
+                <td> <i class="fa fa-minus-circle" aria-hidden="true" v-on:click="removeItem(food)" ></i></td>
               </tr>
             </tbody>
           </table>
