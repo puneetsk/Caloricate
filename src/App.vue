@@ -100,7 +100,7 @@
 <script>
 import Firebase from 'firebase'
 
-let config = {
+ let config = {
     apiKey: "AIzaSyD9Ghr-J33f8sQ9xB7yLFN9vvQpdgVZ1s0",
     authDomain: "caloricate.firebaseapp.com",
     databaseURL: "https://caloricate.firebaseio.com",
