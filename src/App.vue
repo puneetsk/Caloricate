@@ -1,8 +1,5 @@
 <template>
   <div id="app" class="container-fluid">
-
-
-
       <header>
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
@@ -34,10 +31,28 @@
 
 
 
-    <div class="container">    
+    <div class="container">
+    <div class="card">
+        <div class="card-header">
+          <h2>Search Food</h2>
+        </div>
+
+        <div class="card-body">
+          <form id="foodSearch" novalidate class="form-inline" v-on:submit.prevent="searchFood">
+            <div class="col-12">          
+              <input type="text" id="searchItem" class="form-control"  placeholder="Food Item" ></input>
+              <input type="submit" class="btn btn-primary" value="Search Item">
+            </div>    
+            
+          </form>
+        </div>
+      </div>
+
+
+
       <div class="card">
         <div class="card-header">
-          <h2>Add Food</h2>
+          <h2>Add Items Manually</h2>
         </div>
 
         <div class="card-body">
@@ -60,7 +75,10 @@
               <input type="text" id="foodprotein" class="form-control"  v-model="newFood.Protein"  placeholder="Protein in g" ></input>
             </div>
 
-            <input type="submit" class="btn btn-primary" value="Add Food Items">
+            <div class="col">
+              <input type="submit" class="btn btn-primary" value="Add Food Items">
+            </div>
+            
           </form>
         </div>
       </div>
@@ -132,6 +150,13 @@ let dataref= db.ref('Foods'); /* Referencing the category*/
     },
 
     methods:{
+
+      searchFood:function(){
+        var searchedfood= document.getElementById('searchItem').value;
+        console.log(searchedfood);
+      },
+
+
       addFood:function(){
         dataref.push(this.newFood);
         this.newFood.Item ="";
