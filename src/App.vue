@@ -111,13 +111,48 @@
           </table>
         </div>
       </div>
+
+
+      <!--Display the Results of the Application here  -->
+
+      <!-- <div class="card">
+        <div class="card-header">
+          <h2>Calculated Calories</h2>
+        </div>
+
+        <div class="card-body">
+          <table class="table table-stripped">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Calories</th>
+                <th>Fat</th>
+                <th>Protien</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="xsearch in xsearchs">
+                <td>{{ xsearch.[0] }}</td>
+                <td>{{ xsearch.[0] }}g</td>  
+                <td>{{ xsearch.[0] }}g</td>
+                <td>{{ xsearch.[0] }}g</td>
+                <td> <i class="fa fa-minus-circle" aria-hidden="true" v-on:click="removeItem(food)" ></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> -->
+      
+
+
+
     </div>
   </div>
 </template>
 
 <script>
 import Firebase from 'firebase'
-
  let config = {
     apiKey: "AIzaSyD9Ghr-J33f8sQ9xB7yLFN9vvQpdgVZ1s0",
     authDomain: "caloricate.firebaseapp.com",
@@ -130,6 +165,8 @@ import Firebase from 'firebase'
 let app = Firebase.initializeApp(config); /* To intialize the Firsebase Connection with the config*/
 let db = app.database(); /* Open the database connection */
 let dataref= db.ref('Foods'); /* Referencing the category*/
+
+console.log("Some Text here " + dataref.Item);
 
 
   export default {
@@ -148,14 +185,24 @@ let dataref= db.ref('Foods'); /* Referencing the category*/
           }
         }
     },
+ 
 
-    methods:{
+    methods:{   
 
       searchFood:function(){
-        var searchedfood= document.getElementById('searchItem').value;
-        console.log(searchedfood);
-      },
+        var foodcheck = document.getElementById('searchItem').value;  
+        this.$http.get('https://api.nutritionix.com/v1_1/search/'+foodcheck+'?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=ceb86f68&appKey=0eb843c74dbe45f4ee0c60b3fb299f4d')
+          .then(response => {
+            // JSON responses are automatically parsed.
+            this.posts = response.data
 
+          /*  console.log(this.posts);*/
+            var xsearchs = this.posts;
+          
+         
+            
+          })           
+      },
 
       addFood:function(){
         dataref.push(this.newFood);
