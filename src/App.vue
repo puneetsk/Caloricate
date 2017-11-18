@@ -32,24 +32,6 @@
 
 
     <div class="container">
-    <div class="card">
-        <div class="card-header">
-          <h2>Search Food</h2>
-        </div>
-
-        <div class="card-body">
-          <form id="foodSearch" novalidate class="form-inline" v-on:submit.prevent="searchFood">
-            <div class="col-12">          
-              <input type="text" id="searchItem" class="form-control"  placeholder="Food Item" ></input>
-              <input type="submit" class="btn btn-primary" value="Search Item">
-            </div>    
-            
-          </form>
-        </div>
-      </div>
-
-
-
       <div class="card">
         <div class="card-header">
           <h2>Add Items Manually</h2>
@@ -115,34 +97,8 @@
 
       <!--Display the Results of the Application here  -->
 
-      <!-- <div class="card">
-        <div class="card-header">
-          <h2>Calculated Calories</h2>
-        </div>
-
-        <div class="card-body">
-          <table class="table table-stripped">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Calories</th>
-                <th>Fat</th>
-                <th>Protien</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="xsearch in xsearchs">
-                <td>{{ xsearch.[0] }}</td>
-                <td>{{ xsearch.[0] }}g</td>  
-                <td>{{ xsearch.[0] }}g</td>
-                <td>{{ xsearch.[0] }}g</td>
-                <td> <i class="fa fa-minus-circle" aria-hidden="true" v-on:click="removeItem(food)" ></i></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div> -->
+      <SourceSelection></SourceSelection>
+      <!-- -->
       
 
 
@@ -166,13 +122,16 @@ let app = Firebase.initializeApp(config); /* To intialize the Firsebase Connecti
 let db = app.database(); /* Open the database connection */
 let dataref= db.ref('Foods'); /* Referencing the category*/
 
-console.log("Some Text here " + dataref.Item);
-
+import SourceSelection from './components/SourceSelection'
 
   export default {
     name: 'app', 
     firebase:{
       Foods : dataref /* Exporting the information to the template Food in Foods*/
+    },
+
+    components:{
+      SourceSelection
     },
 
     data(){
@@ -189,20 +148,14 @@ console.log("Some Text here " + dataref.Item);
 
     methods:{   
 
-      searchFood:function(){
+     /* searchFood:function(){
         var foodcheck = document.getElementById('searchItem').value;  
         this.$http.get('https://api.nutritionix.com/v1_1/search/'+foodcheck+'?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=ceb86f68&appKey=0eb843c74dbe45f4ee0c60b3fb299f4d')
           .then(response => {
-            // JSON responses are automatically parsed.
             this.posts = response.data
-
-          /*  console.log(this.posts);*/
-            var xsearchs = this.posts;
-          
-         
-            
+            var xsearchs = this.posts;              
           })           
-      },
+      },*/
 
       addFood:function(){
         dataref.push(this.newFood);
