@@ -39,7 +39,7 @@
 	                <td>{{ source.fields.nf_calories }}g</td>  
 	                <td>{{ source.fields.nf_total_fat}}g</td>
 	                <td> N/A </td>
-	                <td> <i class="fa fa-minus-circle" aria-hidden="true" v-on:click="removeItem(food)" ></i></td>
+	                <td> <i class="fa fa-plus-circle" aria-hidden="true" v-on:click="removeItem(food)" ></i></td>
 	              </tr>
 	            </tbody> 
 	          </table>
